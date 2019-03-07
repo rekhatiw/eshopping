@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ShopUserServiceImplService WSDL service -->
+
+  <service name="ShopUserServiceImpl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.shop.in.co"/>
+      <parameter name="wsdlServiceElement" value="ShopUserServiceImplService"/>
+      <parameter name="schemaQualified" value="http://bean.shop.in.co,http://service.shop.in.co,http://xml.apache.org/xml-soap"/>
+      <parameter name="wsdlServicePort" value="ShopUserServiceImpl"/>
+      <parameter name="className" value="co.in.shop.service.ShopUserServiceImpl"/>
+      <parameter name="wsdlPortType" value="ShopUserServiceImpl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://service.shop.in.co" name="main" qname="operNS:main" soapAction="">
+        <parameter xmlns:pns="http://service.shop.in.co" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:a" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://service.shop.in.co" name="deleteShopUser" qname="operNS:deleteShopUser" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://service.shop.in.co" xmlns:retNS="http://service.shop.in.co" xmlns:rtns="http://bean.shop.in.co" name="getShopUser" qname="operNS:getShopUser" returnQName="retNS:getShopUserReturn" returnType="rtns:ShopUser" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://service.shop.in.co" name="addShopUser" qname="operNS:addShopUser" soapAction="">
+        <parameter xmlns:pns="http://service.shop.in.co" xmlns:tns="http://bean.shop.in.co" qname="pns:user" type="tns:ShopUser"/>
+      </operation>
+      <parameter name="allowedMethods" value="deleteShopUser getShopUser main addShopUser"/>
+
+      <typeMapping xmlns:ns="http://service.shop.in.co" qname="ns:&gt;addShopUserResponse" type="java:co.in.shop.service.AddShopUserResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://service.shop.in.co" qname="ns:&gt;mainResponse" type="java:co.in.shop.service.MainResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://service.shop.in.co" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:&gt;main" type="java:java.lang.String[]" innerType="cmp-ns:string" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://service.shop.in.co" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_anyType" type="java:java.lang.Object[]" innerType="cmp-ns:anyType" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://service.shop.in.co" qname="ns:&gt;deleteShopUserResponse" type="java:co.in.shop.service.DeleteShopUserResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://service.shop.in.co" qname="ns:&gt;getShopUserResponse" type="java:co.in.shop.service.GetShopUserResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://service.shop.in.co" qname="ns:&gt;getShopUser" type="java:co.in.shop.service.GetShopUser" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://bean.shop.in.co" qname="ns:ShopUser" type="java:co.in.shop.bean.ShopUser" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://service.shop.in.co" qname="ns:&gt;deleteShopUser" type="java:co.in.shop.service.DeleteShopUser" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://service.shop.in.co" qname="ns:&gt;addShopUser" type="java:co.in.shop.service.AddShopUser" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>
