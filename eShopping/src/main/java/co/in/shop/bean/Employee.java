@@ -3,6 +3,7 @@ import javax.persistence.*;
 
 public class Employee {
 	
+	private int mobileNo;
 	private String firstName;
 	public String getFirstName() {
 		return firstName;
